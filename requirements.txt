@@ -1,0 +1,14 @@
+flask
+gunicorn
+
+# Image / video
+opencv-python
+numpy
+pillow
+
+# Hand tracking / ML
+mediapipe
+scikit-learn
+
+# Config
+python-dotenv
