@@ -2,7 +2,7 @@ flask==3.1.2
 gunicorn==24.1.1
 
 # Image / video
-opencv-python==4.13.0.90
+opencv-python-headless==4.13.0.90
 numpy==2.4.1
 pillow==12.1.0
 
