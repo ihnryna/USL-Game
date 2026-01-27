@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Hand Detection | USL Game{% endblock %}
+
+{% block content %}
+<p>HAND DETECTION PAGE</p>
+
+<video id="video" autoplay playsinline></video>
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script src="static/hand-tracking-script.js"></script>
+{% endblock %}
+
