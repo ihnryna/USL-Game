@@ -4,6 +4,18 @@ import cv2
 import numpy as np
 import base64
 
+# Supported Ukrainian sign language letters (static gestures only)
+
+SUPPORTED_LETTERS = [
+    "А", "Б", "В", "Г", "Е", "Ж",
+    "И", "І", "Л", "М", "Н", "О",
+    "П", "Р", "С", "Т", "У", "Ф",
+    "Х", "Ч", "Ш", "Ю", "Я"
+]
+
+# For convenience
+NUM_CLASSES = len(SUPPORTED_LETTERS)
+
 app = Flask(__name__)
 
 BaseOptions = mp.tasks.BaseOptions
