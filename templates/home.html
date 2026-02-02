@@ -3,12 +3,43 @@
 {% block title %}Home | USL Game{% endblock %}
 
 {% block content %}
-<p>START PAGE</p>
+<div class="welcome">
+    <h2>Ласкаво просимо до Usign!<br> Місце, де можна вивчити українську жестову мову онлайн</h2>
 
-<div class="buttons">
-    <a class="btn" href="/learn">Learn gestures</a>
-    <a class="btn" href="/recall">Recall mode</a>
-    <a class="btn" href="/game">Game mode</a>
-    <a class="btn" href="/hand-tracking">Hand tracking</a>
+    <div class="subtitle">Як ви хочете навчатися?</div>
+</div>
+
+<div class="cards">
+    <div class="card">
+        <div>
+            <h3>🎓 Навчання</h3>
+            <p>Повторюй жести, бачачи правильний приклад</p>
+        </div>
+        <div class="card-image">
+            <img src="static/images/learning-banner.png" alt="Навчання"/>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div>
+            <h3>🧠 Практика</h3>
+            <p>Згадай жест без підказки</p>
+        </div>
+        <div class="card-image">
+            <img src="static/images/practice-banner.png"/>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div>
+            <h3>🎮 Міні-гра</h3>
+            <p>Перевір свої знання у форматі гри</p>
+        </div>
+        <div class="card-image">
+            <div class="construction">UNDER CONSTRUCTION</div>
+        </div>
+    </div>
 </div>
 {% endblock %}

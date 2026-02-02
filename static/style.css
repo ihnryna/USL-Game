@@ -1,12 +1,11 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background: #222;
-    color: white;
+    background: var(--color-bg-card);
+    color: var(--white);
     padding: 15px;
     display: flex;
     align-items: center;
@@ -16,28 +15,38 @@ header {
 
 header h1 {
     margin: 0;
+    font-weight:400;
+    padding-left:5%;
 }
 
 header a {
-    color: white;
+    color: var(--ink-black);
     text-decoration: none;
-}
-
-nav {
 }
 
 nav a {
-    color: white;
+    color: var(--ink-black);
     margin-right: 15px;
     text-decoration: none;
+    font-size:20px;
+
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 nav a:hover {
-    color: yellow;
+    color: var(--royal-gold);
+    transform: scale(1.04);
 }
 
 main {
     padding: 30px;
+}
+
+.welcome{
+  text-align: center;
 }
 
 .buttons {
@@ -57,3 +66,89 @@ main {
 .btn:hover {
     background: #45a049;
 }
+
+* { box-sizing: border-box; font-family: Inter, system-ui, -apple-system, sans-serif; }
+margin-bottom: 10px;
+}
+
+h2 {
+font-size: 18px;
+font-weight: 500;
+margin-bottom: 40px;
+}
+
+.subtitle {
+font-size: 20px;
+margin-bottom: 40px;
+}
+
+.cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 32px;
+justify-items: center;
+}
+
+.card {
+width:25vw;
+text-align: center;
+background: var(--color-bg-card);
+border-radius: 20px;
+padding: 24px;
+height: 380px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.card:hover {
+  background: var(--color-bg-card-hover);
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+margin: 0;
+font-size: 20px;
+}
+
+.card p {
+font-size: 18px;
+color: var(--ink-black);
+}
+
+.card-image {
+  height: 70%;
+  flex-grow: 1;
+  display: flex;
+}
+
+.card-image img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.construction {
+background: repeating-linear-gradient(
+45deg,
+#f7c600,
+#f7c600 10px,
+#111 10px,
+#111 20px
+);
+color: #111;
+font-weight: 800;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 220px;
+border-radius: 14px;
+}
+
