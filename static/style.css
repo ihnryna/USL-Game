@@ -6,7 +6,7 @@ body {
 header {
     background: var(--color-bg-card);
     color: var(--white);
-    padding: 15px;
+    padding: 5px;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -26,7 +26,7 @@ header a {
 
 nav a {
     color: var(--ink-black);
-    margin-right: 15px;
+    margin-right: 60px;
     text-decoration: none;
     font-size:20px;
 
@@ -152,3 +152,105 @@ height: 220px;
 border-radius: 14px;
 }
 
+
+
+.subtitle-practice {
+font-size: 25px;
+margin-bottom: 25px;
+margin-top: 0px;
+}
+
+.practice-zone {
+  display: grid;
+  grid-template-columns: 20% 70%;
+  gap: 32px;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.letter-card {
+width:100%;
+
+text-align: center;
+background: var(--color-bg-card);
+border-radius: 20px;
+padding: 24px;
+height: 380px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+}
+
+.letter-card h3 {
+margin: 0;
+font-size: 20px;
+}
+
+.card-image {
+  height: 70%;
+  flex-grow: 1;
+  display: flex;
+}
+
+.card-image img {
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.user-gesture-card{
+width:100%;
+text-align: center;
+background: var(--color-bg-card);
+border-radius: 20px;
+padding: 24px;
+height: 380px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+}
+
+.user-gesture-card h3 {
+margin-top: 0;
+font-size: 20px;
+}
+
+.camera-on-btn{
+    margin-top:50%;
+    background-color: var(--white);
+    border-radius: 12px;
+    border-width: 0;
+    font-size:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.camera-on-btn:hover{
+    background-color: var(--frozen-lake);
+}
+
+.next-letter-btn{
+    background-color: var(--color-bg-header);
+    border-radius: 12px;
+    border-width: 0;
+    font-size:20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.next-letter-btn:hover{
+    background-color: var(--frozen-lake);
+}
+
+.bottom-buttons{
+    padding-top:40px;
+    text-align: center;
+}

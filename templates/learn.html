@@ -3,6 +3,33 @@
 {% block title %}Learn mode | USL Game{% endblock %}
 
 {% block content %}
-<p>LEARNING PAGE</p>
+<div class="welcome">
+    <div class="subtitle-practice">Режим Навчання<br>Повторюй жест, який бачиш на екрані</div>
+    <h2>Покажіть жест для літери «К»</h2>
+</div>
+
+<div class="practice-zone">
+    <div class="letter-card">
+        <div>
+            <h3>Літера / Жест</h3>
+        </div>
+        <div class="card-image">
+            <img src="static/images/letter-cards/К.png" alt="Літера/Жест"/>
+        </div>
+    </div>
+
+    <div class="user-gesture-card">
+        <div>
+            <h3>Твій жест</h3>
+        </div>
+        <div class="camera-zone">
+            <button class="camera-on-btn">включити камеру</button>
+        </div>
+    </div>
+
+</div>
+<div class="bottom-buttons">
+    <button class="next-letter-btn">Наступна літера</button>
+</div>
 
 {% endblock %}
