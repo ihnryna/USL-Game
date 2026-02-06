@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Recall mode | USL Game{% endblock %}
+
+{% block content %}
+<div class="welcome">
+    <div class="subtitle-practice">Режим Практики<br>Згадайте жест для показаної літери</div>
+    <div class="instruction-practice"><h2>Покажіть жест для літери «К»</h2></div>
+</div>
+
+<div class="practice-zone">
+    <div class="letter-card">
+        <div>
+            <h3>Літера</h3>
+        </div>
+        <div class="card-image">
+            <div class="practice-letter"></div>
+        </div>
+    </div>
+
+    <div class="user-gesture-card">
+        <div class="user-gesture-header">
+            <h3>Твій жест</h3>
+            <button class="check-btn" id="checkButton">Перевірити</button>
+        </div>
+        <div class="camera-zone" id="cameraZone">
+            <button class="camera-on-btn" id="cameraButton">включити камеру</button>
+        </div>
+    </div>
+
+</div>
+<div class="bottom-buttons">
+    <button class="next-letter-btn" id="nextLetterButton">Наступна літера</button>
+</div>
+
+<script src="static/practice-page.js" defer></script>
+
+{% endblock %}

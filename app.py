@@ -38,9 +38,9 @@ def index():
 def learn():
     return render_template("learn.html")
 
-@app.route("/recall")
-def recall():
-    return render_template("recall.html")
+@app.route("/practice")
+def practice():
+    return render_template("practice.html")
 
 @app.route("/game")
 def game():

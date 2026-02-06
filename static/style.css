@@ -184,7 +184,7 @@ width:100%;
 text-align: center;
 background: var(--color-bg-card);
 border-radius: 20px;
-padding: 20px;
+padding: 30px;
 height: 380px;
 display: flex;
 flex-direction: column;
@@ -225,8 +225,25 @@ justify-content: flex-start;
 }
 
 .user-gesture-card h3 {
-margin-top: 0;
+margin-top: 10px;
+font-size: 20px;
 font-size: 16px;
+}
+
+.user-gesture-header h3 {
+margin-top: 0;
+margin-bottom: 0;
+font-size: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.user-gesture-header {
+    width:100%;
+    display: flex;
+    align-items: center;
+    position:relative;
 }
 
 .camera-on-btn{
@@ -283,4 +300,24 @@ font-size: 16px;
 
     object-fit: cover;
     border-radius: 16px;
+}
+
+.check-btn{
+    background-color: var(--white);
+    border-radius: 5px;
+    border-width: 0;
+    padding: 10px 20px;
+    font-size:16px;
+    display:block;
+    margin-left: auto;
+    visibility: hidden;
+}
+
+.check-btn:hover{
+    background-color: var(--frozen-lake);
+}
+
+.practice-letter{
+    font-size:150px;
+    align-self: center;
 }
