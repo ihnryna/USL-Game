@@ -36,7 +36,7 @@ function getRandomLetter() {
 
 function setLetter(l) {
         const letter = document.querySelector(".practice-letter");
-        const title = document.querySelector(".welcome h2");
+        const title = document.querySelector(".instruction-practice");
 
         if (title) {
             title.textContent = `Покажіть жест для літери «${l}»`;

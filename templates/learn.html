@@ -5,7 +5,7 @@
 {% block content %}
 <div class="welcome">
     <div class="subtitle-practice">Режим Навчання<br>Повторюй жест, який бачиш на екрані</div>
-    <div class="instruction-practice"><h2>Покажіть жест для літери «К»</h2></div>
+    <div class="instruction-practice">Покажіть жест для літери «К»</div>
 </div>
 
 <div class="practice-zone">
@@ -23,16 +23,20 @@
             <h3>Твій жест</h3>
         </div>
         <div class="camera-zone" id="cameraZone">
-            <button class="camera-on-btn" id="cameraButton">включити камеру</button>
+            <button class="camera-on-btn camera-on-btn-learn btn rounder-btn" id="cameraButton">включити камеру</button>
         </div>
     </div>
-
+    <div>
+    </div>
+    <div class="result-text">
+        Руку не знайдено
+    </div>
 </div>
+
 <div class="bottom-buttons">
-    <button class="next-letter-btn" id="nextLetterButton">Наступна літера</button>
+    <button class="next-letter-btn btn" id="nextLetterButton">Наступна літера</button>
 </div>
 
 <script src="static/learn-page.js" defer></script>
-
 
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block content %}
 <div class="welcome">
     <div class="subtitle-practice">Режим Практики<br>Згадайте жест для показаної літери</div>
-    <div class="instruction-practice"><h2>Покажіть жест для літери «К»</h2></div>
+    <div class="instruction-practice">Покажіть жест для літери «К»</div>
 </div>
 
 <div class="practice-zone">
@@ -21,16 +21,21 @@
     <div class="user-gesture-card">
         <div class="user-gesture-header">
             <h3>Твій жест</h3>
-            <button class="check-btn" id="checkButton">Перевірити</button>
+            <button class="check-btn btn" id="checkButton">Перевірити</button>
         </div>
         <div class="camera-zone" id="cameraZone">
-            <button class="camera-on-btn" id="cameraButton">включити камеру</button>
+            <button class="camera-on-btn btn rounder-btn" id="cameraButton">включити камеру</button>
         </div>
     </div>
-
+    <div>
+    </div>
+    <div class="result-text">
+        Руку не знайдено
+    </div>
 </div>
+
 <div class="bottom-buttons">
-    <button class="next-letter-btn" id="nextLetterButton">Наступна літера</button>
+    <button class="next-letter-btn btn" id="nextLetterButton">Наступна літера</button>
 </div>
 
 <script src="static/practice-page.js" defer></script>

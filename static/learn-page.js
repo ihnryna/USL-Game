@@ -34,7 +34,7 @@ function getRandomLetter() {
 
 function setLetter(l) {
         const img = document.querySelector(".card-image img");
-        const title = document.querySelector(".welcome h2");
+        const title = document.querySelector(".instruction-practice");
 
         img.src = `static/images/letter-cards/${l}.png`;
         img.alt = `Літера / Жест ${l}`;
