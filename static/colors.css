@@ -1,4 +1,23 @@
 :root {
+  --blue: #0900B3;
+  --yellow: #FED770;
+  --red: #FE5F5F;
+  --green: #03C51A;
+  --green-learning: #8BEF73;
+  --orange-game: #FFAC70;
+  --blue-practice: #70B5FF;
+  --blue-sign: #70D6FF;
+  --gray: #D9D9D9;
+
+
+  --header-bg: var(--yellow);
+  --header-text: var(--blue);
+  --header-text-hover: var(--blue-sign);
+
+
+
+
+
   --color-bg-main: #f5f5f5;
   --color-bg-header: #dedede;
   --color-bg-card: #dedede;
@@ -20,4 +39,6 @@
   --frozen-lake: #70D6FF;
   --royal-gold: #FFD670;
   --white: white;
+
+
 }
