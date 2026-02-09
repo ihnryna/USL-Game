@@ -8,11 +8,13 @@
   --blue-practice: #70B5FF;
   --blue-sign: #70D6FF;
   --gray: #D9D9D9;
+  --ink-black: #001011;
 
-
+  --color-text: var(--ink-black);
   --header-bg: var(--yellow);
   --header-text: var(--blue);
   --header-text-hover: var(--blue-sign);
+
 
 
 

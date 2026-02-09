@@ -15,14 +15,14 @@ header {
 }
 
 .logo {
-    height: 30px;
+    height: 32px;
 }
 
 header a {
     margin-left:80px;
-    margin-top:11px;
-    margin-bottom:10px;
-    color: var(--ink-black);
+    margin-top:12px;
+    margin-bottom:9px;
+    color: var(--color-text);
     text-decoration: none;
 }
 
@@ -45,86 +45,88 @@ nav a:hover {
     transform: scale(1.04);
 }
 
-main {
-    padding: 30px;
-}
-
 .welcome{
-  text-align: center;
+    margin-top:5vh;
+    text-align: center;
 }
 
-.buttons {
-    margin-top: 30px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 20px;
-    margin-right: 10px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.btn:hover {
-    background: #45a049;
+.welcome h2{
+    font-size:3vh;
+    margin-bottom: 4vh;
 }
 
 * { box-sizing: border-box; font-family: Inter, system-ui, -apple-system, sans-serif; }
-margin-bottom: 10px;
-}
-
-h2 {
-font-size: 18px;
-font-weight: 500;
-margin-bottom: 40px;
-}
 
 .subtitle {
-font-size: 20px;
-margin-bottom: 40px;
+    font-size: 3vh;
+    margin-bottom: 4vh;
 }
 
 .cards {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 32px;
-justify-items: center;
+    width:80vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24vw, 24vw));
+    gap: 4vw;
+    justify-items: center;
+    justify-content: center;
+
 }
 
 .card {
-width:25vw;
-text-align: center;
-background: var(--color-bg-card);
-border-radius: 20px;
-padding: 24px;
-height: 380px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
+    width:25vw;
+    max-width: 390px;
+    text-align: center;
+    border-radius: 3vh;
+    padding: 24px;
+    padding-top: 4vh;
+    height: 527px;
+    max-height: 527px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 
-  transition:
-    transform 0.25s ease,
-    background-color 0.25s ease,
-    box-shadow 0.25s ease;
+      transition:
+        transform 0.25s ease,
+        background-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card-learn{
+    background: var(--green-learning);
+}
+.card-practice{
+    background: var(--blue-practice);
+}
+.card-game{
+    background: var(--orange-game);
 }
 
 .card:hover {
-  background: var(--color-bg-card-hover);
-  transform: scale(1.04);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: scale(1.04);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-height: 960px) {
+    .cards{
+        gap: 4vw;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    }
+    .card {
+        width: 20vw;
+        height: 60vh;
+    }
 }
 
 .card h3 {
-margin: 0;
-font-size: 20px;
+    margin: 0;
+    font-size: 2.3vh;
 }
 
 .card p {
-font-size: 18px;
-color: var(--ink-black);
+    font-size: 2.3vh;
+    color: var(--ink-black);
 }
 
 .card-image {
@@ -140,45 +142,45 @@ color: var(--ink-black);
 }
 
 .construction {
-background: repeating-linear-gradient(
-45deg,
-#f7c600,
-#f7c600 10px,
-#111 10px,
-#111 20px
-);
-color: #111;
-font-weight: 800;
-display: flex;
-align-items: center;
-justify-content: center;
-height: 220px;
-border-radius: 14px;
+    background: repeating-linear-gradient(
+    45deg,
+    #f7c600,
+    #f7c600 10px,
+    #111 10px,
+    #111 20px
+    );
+    color: #111;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    border-radius: 14px;
 }
 
 
 
 .subtitle-practice {
-font-size: 20px;
-margin-bottom: 25px;
-margin-top: 0px;
+    font-size: 20px;
+    margin-bottom: 25px;
+    margin-top: 0px;
 }
 
 .instruction-practice {
-font-size: 15px;
-margin-bottom: 25px;
-margin-top: 0px;
+    font-size: 15px;
+    margin-bottom: 25px;
+    margin-top: 0px;
 }
 
 .practice-zone {
     width: 60%;
     margin: 0 auto;
-  display: grid;
-  grid-template-columns: 35% 65%;
-  gap: 32px;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    gap: 32px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
 }
 
 
