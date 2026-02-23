@@ -20,6 +20,9 @@
   --btn-disabled: var(--gray);
   --btn-text-disabled: var(--black);
 
+  --gesture-card-state-correct: var(--green);
+  --gesture-card-state-wrong: var(--red);
+  --gesture-card-state-neutral: var(--blue-practice);
 
 
 

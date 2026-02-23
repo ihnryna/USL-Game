@@ -123,6 +123,13 @@ nav a:hover {
     }
 }
 
+@media (min-width: 1800px) {
+    .cards{
+        gap: 6vw;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    }
+}
+
 .card h3 {
     margin: 0;
     font-size: 2.3vh;
@@ -226,6 +233,18 @@ nav a:hover {
     justify-content: flex-start;
 }
 
+.user-gesture-card.state-correct {
+    background-color: var(--gesture-card-state-correct);
+}
+
+.user-gesture-card.state-wrong {
+    background-color: var(--gesture-card-state-wrong);
+}
+
+.user-gesture-card.state-neutral {
+    background-color: var(--gesture-card-state-neutral);
+}
+
 .user-gesture-card h3 {
     margin-top: 0;
     font-size: 2.3vh;
@@ -280,7 +299,7 @@ nav a:hover {
     background-color: var(--btn-disabled);
 }
 
-.btn:hover{
+.btn:not(:disabled):hover{
     background-color: var(--frozen-lake);
 }
 

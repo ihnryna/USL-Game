@@ -8,6 +8,11 @@ const SUPPORTED_LETTERS = [
         "Х", "Ч", "Ш", "Ю", "Я"
 ];
 
+window.appState = {
+    currentLetter: null
+};
+
+
 cameraBtn.addEventListener("click", () => {
         cameraBtn.remove();
 
@@ -17,7 +22,7 @@ cameraBtn.addEventListener("click", () => {
         `);
 
         const script = document.createElement("script");
-        script.src = "static/hand-tracking-script.js";
+        script.src = "static/hand-tracking-script-learn.js";
         script.defer = true;
         document.body.appendChild(script);
 });
@@ -30,6 +35,7 @@ nextLetterButton.addEventListener("click", () => {
 function getRandomLetter() {
         const index = Math.floor(Math.random() * SUPPORTED_LETTERS.length);
         return SUPPORTED_LETTERS[index];
+        //return "О";
 }
 
 function setLetter(l) {
@@ -46,6 +52,11 @@ function setLetter(l) {
 
 function nextLetter(){
     const letter = getRandomLetter();
+    window.appState.currentLetter = letter;
+    if (window.startSendingFrames) {
+        window.startSendingFrames();
+    }
+    nextLetterButton.disabled=true;
     setLetter(letter);
 }
 
