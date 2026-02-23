@@ -1,7 +1,15 @@
-const cameraBtn = document.getElementById("cameraButton");
-const checkBtn = document.getElementById("checkButton");
-const nextLetterButton = document.getElementById("nextLetterButton");
-const cameraZone = document.getElementById("cameraZone");
+window.appState = {
+    currentLetter: null
+};
+
+{
+const cameraBtn = document.getElementById("cameraButtonPr");
+const checkBtn = document.getElementById("checkButtonPr");
+const nextLetterButton = document.getElementById("nextLetterButtonPr");
+const cameraZone = document.getElementById("cameraZonePr");
+const cameraFrame = document.getElementById("userGestureCardPr");
+const resultText = document.getElementById("resultTextPr");
+
 const SUPPORTED_LETTERS = [
         "А", "Б", "В", "Г", "Е", "Ж",
         "И", "І", "Л", "М", "Н", "О",
@@ -19,19 +27,25 @@ cameraBtn.addEventListener("click", () => {
         `);
 
         const script = document.createElement("script");
-        script.src = "static/hand-tracking-script.js";
+        script.src = "static/hand-tracking-script-practice.js";
         script.defer = true;
         document.body.appendChild(script);
 });
 
 nextLetterButton.addEventListener("click", () => {
     nextLetter();
+    resultText.style.visibility = "hidden";
+    cameraFrame.classList.add("state-neutral");
+    checkBtn.style.visibility = "visible";
+    checkBtn.textContent = "Перевірити";
+    nextLetterButton.disabled=true;
 });
 
 
 function getRandomLetter() {
         const index = Math.floor(Math.random() * SUPPORTED_LETTERS.length);
         return SUPPORTED_LETTERS[index];
+        //return "О";
 }
 
 function setLetter(l) {
@@ -44,14 +58,24 @@ function setLetter(l) {
 
         if (letter) {
             letter.textContent = `${l}`;
+            letter.style.display = "block";
         }
 }
 
 function nextLetter(){
     const letter = getRandomLetter();
     setLetter(letter);
+    nextLetterButton.disabled=true;
+    window.appState.currentLetter = letter;
+
+    const letterImg = document.getElementById("letterImg");
+    if (letterImg) {
+        letterImg.style.display = "none";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     nextLetter();
 });
+
+}

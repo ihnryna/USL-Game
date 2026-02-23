@@ -1,10 +1,11 @@
+{
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-//const nextLetterButton = document.getElementById("nextLetterButton");
+const nextLetterButton = document.getElementById("nextLetterButton");
 const cameraFrame = document.getElementById("userGestureCard");
 const resultText = document.getElementById("resultText");
-
+const checkBtn = document.getElementById("checkButton");
 
 navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
@@ -66,24 +67,30 @@ function showResult(rightLetters, noHand, intervalId){
 
     if(noHand>5){
         resultText.textContent = "Руку не знайдено";
+        resultText.style.visibility = "visible";
         cameraFrame.classList.add("state-wrong");
         return;
     }
     if(rightLetters==0){
         resultText.textContent = "Подивіться на приклад і спробуйте ще раз";
+        resultText.style.visibility = "visible";
         cameraFrame.classList.add("state-wrong");
         return;
     }
     if(rightLetters<7){
         resultText.textContent = "Добре! Утримуйте жест... "+rightLetters+"/7";
+        resultText.style.visibility = "visible";
         cameraFrame.classList.add("state-neutral");
         return;
     }
     if(rightLetters>=7){
         clearInterval(intervalId);
         resultText.textContent = "Чудово! Переходимо далі";
+        resultText.style.visibility = "visible";
         cameraFrame.classList.add("state-correct");
         nextLetterButton.disabled=false;
         return;
     }
+}
+
 }

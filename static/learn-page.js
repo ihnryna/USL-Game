@@ -1,3 +1,9 @@
+window.appState = {
+    currentLetter: null
+};
+
+{
+
 const cameraBtn = document.getElementById("cameraButton");
 const nextLetterButton = document.getElementById("nextLetterButton");
 const cameraZone = document.getElementById("cameraZone");
@@ -7,10 +13,6 @@ const SUPPORTED_LETTERS = [
         "П", "Р", "С", "Т", "У", "Ф",
         "Х", "Ч", "Ш", "Ю", "Я"
 ];
-
-window.appState = {
-    currentLetter: null
-};
 
 
 cameraBtn.addEventListener("click", () => {
@@ -57,9 +59,12 @@ function nextLetter(){
         window.startSendingFrames();
     }
     nextLetterButton.disabled=true;
+    resultText.style.visibility = "hidden";
     setLetter(letter);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     nextLetter();
 });
+
+}
