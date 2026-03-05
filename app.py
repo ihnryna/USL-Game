@@ -50,7 +50,7 @@ def practice():
 
 @app.route("/game")
 def game():
-    return render_template("game.html")
+    return render_template("catch.html")
 
 @app.route("/hand-tracking")
 def hand_tracking():
