@@ -3,10 +3,38 @@
 {% block title %}Game mode | USL Game{% endblock %}
 
 {% block content %}
-<p>GAME PAGE</p>
-
-<div class="buttons">
-    <a class="btn">Play</a>
+<div class="welcome">
+    <div class="subtitle-practice">Режим Гри<br>Покажіть необхідний жест, щоб нагодувати жабку</div>
+    <div class="instruction-game">Покажіть жест для літери «К»</div>
 </div>
+
+<div class="game-zone">
+    <div id="game-area" class="game-area">
+        <div class="flies-eaten-text">Мух зʼїдено: 3</div>
+        <img id="frog" src="static/images/frog/1.png">
+        <div class="lives-bar">
+            <img id="food1" class="food empty" src="static/images/food/lose.png">
+            <img id="food2" class="food empty" src="static/images/food/lose.png">
+            <img id="food3" class="food full" src="static/images/food/win.png">
+            <img id="food4" class="food full" src="static/images/food/win.png">
+            <img id="food5" class="food full" src="static/images/food/win.png">
+        </div>
+        <img id="fly" src="static/images/fly/А.png">
+
+    </div>
+
+    <div class="user-gesture-card state-neutral" id="userGestureCardG">
+        <div>
+            <h3>Твій жест</h3>
+        </div>
+        <div class="camera-zone" id="cameraZoneG">
+            <button class="camera-on-btn camera-on-btn-learn btn rounder-btn" id="cameraButtonG">включити камеру
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="static/game-page.js" defer></script>
+
 
 {% endblock %}

@@ -1,63 +1,116 @@
+{
 const fly = document.getElementById("fly");
 const frog = document.getElementById("frog");
-const button = document.getElementById("catchBtn");
 const result = document.getElementById("result");
+const gameArea = document.getElementById("game-area");
+const cameraBtn = document.getElementById("cameraButtonG");
+const title = document.querySelector(".instruction-game");
+const cameraZone = document.getElementById("cameraZoneG");
+const SUPPORTED_LETTERS = [
+        "А", "Б", "В", "Г", "Е", "Ж",
+        "И", "І", "Л", "М", "Н", "О",
+        "П", "Р", "С", "Т", "У", "Ф",
+        "Х", "Ч", "Ш", "Ю", "Я"
+];
+
+
+window.appState = {
+    currentLetter: null
+};
 
 let flyX = 0;
 let flyY = 0;
 
 let deltaX = 0;
-let deltaY = 0;
+let deltaY = 6;
 
-const areaWidth = 560;
-const areaHeight = 360;
+const areaWidth = gameArea.clientWidth;
+const areaHeight = gameArea.clientHeight;
 
-function changeDirectionFly()
+const flyWidth = fly.clientWidth;
+const flyHeight = fly.clientHeight;
+
+/*function changeDirectionFly()
 {
     deltaX = (Math.random()-0.5) * 10;
     deltaY = (Math.random()-0.5) * 10;
 }
-setInterval(changeDirectionFly, 1000);
+setInterval(changeDirectionFly, 1000);*/
 
 function moveFly()
 {
-    flyX += deltaX;
     flyY += deltaY;
 
-    if (flyX < 0 || flyX > areaWidth)
-        deltaX *= -1;
+    if (flyY < 0 || flyY+flyHeight > areaHeight){
+        nextFly();
+        return;
+    }
 
-    if (flyY < 0 || flyY > areaHeight)
-        deltaY *= -1;
-
-    fly.style.left = flyX + "px";
     fly.style.top = flyY + "px";
 }
-setInterval(moveFly, 16);
 
-button.onclick = function()
-{
-    const frogRect = frog.getBoundingClientRect();
-    const flyRect = fly.getBoundingClientRect();
+cameraBtn.addEventListener("click", () => {
+        cameraBtn.remove();
+        nextFly();
+        setInterval(moveFly, 80);
+        fly.style.visibility = "visible";
+        title.style.visibility = "visible";
 
-    const frogCenterX = frogRect.left + frogRect.width/2;
-    const frogCenterY = frogRect.top + frogRect.height/2;
 
-    const flyCenterX = flyRect.left + flyRect.width/2;
-    const flyCenterY = flyRect.top + flyRect.height/2;
+        cameraZone.insertAdjacentHTML("beforeend", `
+            <video id="video" class="camera-rectangle" autoplay playsinline></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+        `);
 
-    const distance = Math.sqrt(
-        (frogCenterX - flyCenterX) ** 2 +
-        (frogCenterY - flyCenterY) ** 2
-    );
+        const script = document.createElement("script");
+        script.src = "static/hand-tracking-script-game.js";
+        script.defer = true;
+        document.body.appendChild(script);
+});
 
-    if(distance < 120)
-    {
-        result.innerText = "🐸 Got it!";
-        moveFly();
+function setFlyLetter(l) {
+    return new Promise((resolve) => {
+
+        const src = `static/images/fly/${l}.png`;
+        const img = new Image();
+
+        img.onload = () => {
+            fly.src = src;
+            fly.alt = `Літера / Жест ${l}`;
+            title.textContent = `Покажіть жест для літери «${l}»`;
+            resolve();
+        };
+
+        img.src = src;
+    });
+}
+
+
+function getRandomLetter() {
+        const index = Math.floor(Math.random() * SUPPORTED_LETTERS.length);
+        return SUPPORTED_LETTERS[index];
+        //return "О";
+}
+
+async function nextFly(){
+
+    const letter = getRandomLetter();
+    window.appState.currentLetter = letter;
+
+    if (window.startSendingFrames) {
+        window.startSendingFrames();
     }
-    else
-    {
-        result.innerText = "Missed!";
-    }
+
+    await setFlyLetter(letter);   // ⬅ чекаємо поки картинка завантажиться
+
+    const areaWidth = gameArea.clientWidth;
+    const flyWidth = fly.clientWidth;
+
+    flyX = Math.random() * (areaWidth - flyWidth);
+
+    fly.style.left = flyX + "px";
+    flyY = 0;
+    fly.style.top = flyY + "px";
+}
+
 }

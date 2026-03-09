@@ -382,29 +382,96 @@ nav a:hover {
 
 
 
+
+
+.instruction-game {
+    font-weight:bold;
+    font-size: 3vh;
+    margin-bottom: 3.2vh;
+    margin-top: 0px;
+    margin-right: 10vw;
+    text-align: end;
+    visibility: hidden;
+}
+
+.game-zone {
+    width: 88vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    row-gap: 2vh;
+    column-gap: 0px;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#userGestureCardG{
+    width: 43vw;
+}
+
 .game-area{
     position: relative;
-    width: 600px;
-    height: 400px;
+    width: 35vw;
+    height: 527px;
     border: 3px solid black;
     margin: auto;
     overflow: hidden;
+    justify-self: end;
 }
+
 
 #frog{
     position: absolute;
-    width: 100px;
-    left: 250px;
-    top: 150px;
+    width: 17vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #fly{
     position: absolute;
-    width: 40px;
+    width: 7vh;
+    visibility: hidden;
 }
 
-#catchBtn{
-    margin-top:20px;
-    padding:10px 20px;
-    font-size:18px;
+.flies-eaten-text{
+    margin-top: 10px;
+    text-align: center;
+    font-weight:bold;
+    color: var(--header-text);
+    font-size:30px;
+}
+
+.lives-bar{
+    position: absolute;
+    left: 50%;
+    top: 73%;
+    transform: translate(-50%, 0);
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.food{
+    width: 32px;
+}
+
+@media (max-height: 960px) {
+    #userGestureCardG{
+        width: 30vw;
+    }
+    .game-area{
+        height: 58vh;
+    }
+    .game-zone {
+        grid-template-columns: 30vw 45vw;
+    }
+    .instruction-game {
+        margin-right: 25vw;
+    }
+    #frog{
+        width: 20vh;
+    }
 }
