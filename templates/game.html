@@ -10,11 +10,11 @@
 
 <div class="game-zone">
     <div id="game-area" class="game-area">
-        <div class="flies-eaten-text">Мух зʼїдено: 3</div>
+        <div class="flies-eaten-text">Мух зʼїдено: 0</div>
         <img id="frog" src="static/images/frog/1.png">
         <div class="lives-bar">
-            <img id="food1" class="food empty" src="static/images/food/lose.png">
-            <img id="food2" class="food empty" src="static/images/food/lose.png">
+            <img id="food1" class="food full" src="static/images/food/win.png">
+            <img id="food2" class="food full" src="static/images/food/win.png">
             <img id="food3" class="food full" src="static/images/food/win.png">
             <img id="food4" class="food full" src="static/images/food/win.png">
             <img id="food5" class="food full" src="static/images/food/win.png">
@@ -32,6 +32,27 @@
             </button>
         </div>
     </div>
+</div>
+
+<div id="gameModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2 id="modalText"></h2>
+        <img id="modalFrog" class="modal-frog" src="static/images/frog/1.png">
+
+        <div id="foodBar2" class="food-bar2">
+            <img class="food2" src="static/images/food/win.png">
+            <img class="food2" src="static/images/food/win.png">
+            <img class="food2" src="static/images/food/win.png">
+            <img class="food2" src="static/images/food/win.png">
+            <img class="food2" src="static/images/food/win.png">
+        </div>
+
+        <button class="btn" id="modalButton" onclick="restartGame()">Play again</button>
+
+    </div>
+
 </div>
 
 <script src="static/game-page.js" defer></script>

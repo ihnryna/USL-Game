@@ -418,12 +418,13 @@ nav a:hover {
     margin: auto;
     overflow: hidden;
     justify-self: end;
+    border-radius: 1.5vh;
 }
 
 
 #frog{
     position: absolute;
-    width: 17vh;
+    height: 24vh;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -433,6 +434,8 @@ nav a:hover {
     position: absolute;
     width: 7vh;
     visibility: hidden;
+
+    transition: left 0.4s linear, top 0.4s linear, transform 0.4s linear;
 }
 
 .flies-eaten-text{
@@ -441,6 +444,7 @@ nav a:hover {
     font-weight:bold;
     color: var(--header-text);
     font-size:30px;
+    visibility: hidden;
 }
 
 .lives-bar{
@@ -458,6 +462,62 @@ nav a:hover {
     width: 32px;
 }
 
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    background:var(--orange-game);
+    width:48vh;
+    height:48vh;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    font-size:2vh;
+}
+
+.modal-frog{
+    height:200px;
+}
+
+.food-bar2{
+    margin-top:15px;
+}
+
+.food2{
+    width:30px;
+    margin:5px;
+    visibility: visible;
+}
+
+.food-no{
+    visibility: hidden;
+}
+
+.food-fall{
+    animation: fallFood 1s forwards;
+}
+
+@keyframes fallFood{
+    to{
+        transform: translateY(400px);
+        opacity:0;
+    }
+}
+
+#modalButton{
+    visibility: hidden;
+    font-size:2vh;
+}
+
+
 @media (max-height: 960px) {
     #userGestureCardG{
         width: 30vw;
@@ -472,6 +532,13 @@ nav a:hover {
         margin-right: 25vw;
     }
     #frog{
-        width: 20vh;
+        height: 25vh;
+    }
+    .modal-frog{
+        height: 20vh;
+    }
+    .modal-content{
+        width:52vh;
+        height:52vh;
     }
 }

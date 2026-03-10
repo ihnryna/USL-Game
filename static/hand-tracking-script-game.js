@@ -4,6 +4,8 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const cameraFrame = document.getElementById("userGestureCardG");
 
+window.handTrackingInterval = null;
+
 navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
         video.srcObject = stream;
@@ -13,7 +15,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
 window.startSendingFrames = function() {
     const resultsQueue = [];
 
-    const intervalId = setInterval(async () => {
+    window.handTrackingInterval = setInterval(async () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
@@ -40,31 +42,28 @@ window.startSendingFrames = function() {
         }
 
         console.log("Queue:", resultsQueue);
-        processLastResults(resultsQueue, intervalId);
+        processLastResults(resultsQueue);
 
     }, 1000);
 }
 
-function processLastResults(results, intervalId) {
+function processLastResults(results) {
     const currentLetter = window.appState?.currentLetter;
 
     var rightLetters = 0;
-    var noHand = 0;
     results.forEach(letter => {
         if (letter==currentLetter) rightLetters++;
-        if (letter==0) noHand++;
     });
     console.log(rightLetters);
-    showResult((rightLetters>=2), intervalId);
+    showResult((rightLetters>=2));
 }
 
-function showResult(win, intervalId){
-
+function showResult(win){
     if(win){
-        /*resultText.textContent = "Руку не знайдено";
-        resultText.style.visibility = "visible";
-        cameraFrame.classList.add("state-wrong");
-        return;*/
+        clearInterval(handTrackingInterval);
+        if(window.gameSuccess){
+            window.gameSuccess();
+        }
     }else{
     }
 }

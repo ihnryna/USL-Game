@@ -5,7 +5,15 @@ const result = document.getElementById("result");
 const gameArea = document.getElementById("game-area");
 const cameraBtn = document.getElementById("cameraButtonG");
 const title = document.querySelector(".instruction-game");
+const fliesEatenText = document.querySelector(".flies-eaten-text");
 const cameraZone = document.getElementById("cameraZoneG");
+const modal = document.getElementById("gameModal");
+const modalText = document.getElementById("modalText");
+const modalButton = document.getElementById("modalButton");
+const foods = document.querySelectorAll(".lives-bar .food");
+const modalFrog = document.getElementById("modalFrog");
+const foodBar2 = document.querySelectorAll("#foodBar2 .food2");
+
 const SUPPORTED_LETTERS = [
         "А", "Б", "В", "Г", "Е", "Ж",
         "И", "І", "Л", "М", "Н", "О",
@@ -14,15 +22,16 @@ const SUPPORTED_LETTERS = [
 ];
 
 
-window.appState = {
-    currentLetter: null
-};
+let flyInterval = null;
+
+let counter = 0;
+let loseCounter = 0;
 
 let flyX = 0;
 let flyY = 0;
 
 let deltaX = 0;
-let deltaY = 6;
+let deltaY = 5;
 
 const areaWidth = gameArea.clientWidth;
 const areaHeight = gameArea.clientHeight;
@@ -30,43 +39,109 @@ const areaHeight = gameArea.clientHeight;
 const flyWidth = fly.clientWidth;
 const flyHeight = fly.clientHeight;
 
-/*function changeDirectionFly()
-{
-    deltaX = (Math.random()-0.5) * 10;
-    deltaY = (Math.random()-0.5) * 10;
+function successAnimation(){
+    foodBar2.forEach((food, index) => {
+        food.classList.remove("food-no", "food-fall");
+        if(index < loseCounter){
+            food.classList.add("food-no");
+        }
+    });
+
+    modal.style.display = "flex";
+    modalText.textContent = "Ням, ням, ням!";
+    const frames = [
+        "static/images/frog/4.png",
+        "static/images/frog/1.png",
+        "static/images/frog/3.png"
+    ];
+    let i = 0;
+    const anim = setInterval(()=>{
+        modalFrog.src = frames[i];
+        i++;
+        if(i >= frames.length){
+            clearInterval(anim);
+            setTimeout(()=>{
+                modal.style.display = "none";
+                modalFrog.src = "static/images/frog/4.png";
+                frog.src = "static/images/frog/5.png";
+                nextFly();
+            },400);
+        }
+    },800);
 }
-setInterval(changeDirectionFly, 1000);*/
+
+function failAnimation(){
+    foodBar2.forEach((food, index) => {
+        food.classList.remove("food-no", "food-fall");
+        if(index < loseCounter-1){
+            food.classList.add("food-no");
+        }
+        else if(index === loseCounter-1){
+            food.classList.add("food-fall");
+        }
+    });
+
+    modalFrog.src = "static/images/frog/sad.png";
+    modalText.textContent = "О ні...";
+    modal.style.display = "flex";
+    if(loseCounter>=5){
+        modalButton.style.visibility = "visible";
+    } else{
+        modalButton.style.visibility = "hidden";
+    }
+    setTimeout(()=>{
+        if(loseCounter<5){
+            modal.style.display = "none";
+            modalFrog.src = "static/images/frog/4.png";
+            frog.src = "static/images/frog/5.png";
+            fly.style.visibility = "hidden";
+            nextFly();
+        }
+    },1200);
+
+}
+
+window.gameSuccess = function(){
+    clearInterval(flyInterval);
+    clearInterval(handTrackingInterval);
+    frog.src = `static/images/frog/2.png`;
+    counter++;
+    fliesEatenText.textContent = `Мух зʼїдено: `+counter;
+
+    animateFlyToFrog(() => {
+        fly.style.visibility = "hidden";
+        successAnimation();
+    });
+}
+
+window.gameFail = function(){
+    clearInterval(flyInterval);
+    clearInterval(handTrackingInterval);
+
+    loseCounter++;
+    updateLives();
+
+    failAnimation();
+}
+
+function restartGame(){
+    location.reload();
+}
+
+window.appState = {
+    currentLetter: null
+};
 
 function moveFly()
 {
     flyY += deltaY;
-
-    if (flyY < 0 || flyY+flyHeight > areaHeight){
-        nextFly();
+    if (flyY > areaHeight){
+        fly.style.visibility = "hidden";
+        gameFail();
         return;
     }
-
     fly.style.top = flyY + "px";
 }
-
-cameraBtn.addEventListener("click", () => {
-        cameraBtn.remove();
-        nextFly();
-        setInterval(moveFly, 80);
-        fly.style.visibility = "visible";
-        title.style.visibility = "visible";
-
-
-        cameraZone.insertAdjacentHTML("beforeend", `
-            <video id="video" class="camera-rectangle" autoplay playsinline></video>
-            <canvas id="canvas" style="display:none;"></canvas>
-        `);
-
-        const script = document.createElement("script");
-        script.src = "static/hand-tracking-script-game.js";
-        script.defer = true;
-        document.body.appendChild(script);
-});
 
 function setFlyLetter(l) {
     return new Promise((resolve) => {
@@ -85,32 +160,84 @@ function setFlyLetter(l) {
     });
 }
 
-
 function getRandomLetter() {
         const index = Math.floor(Math.random() * SUPPORTED_LETTERS.length);
-        return SUPPORTED_LETTERS[index];
-        //return "О";
+        //return SUPPORTED_LETTERS[index];
+        return "Б";
+}
+
+function animateFlyToFrog(callback){
+    const frogRect = frog.getBoundingClientRect();
+    const flyRect = fly.getBoundingClientRect();
+    const gameRect = gameArea.getBoundingClientRect();
+
+    const frogCenterX = frogRect.left + frogRect.width/3 - gameRect.left;
+    const frogCenterY = frogRect.top + frogRect.height/4 - gameRect.top;
+
+    fly.style.left = frogCenterX + "px";
+    fly.style.top = frogCenterY + "px";
+    fly.style.transform = "scale(0)";
+    setTimeout(callback, 400);
 }
 
 async function nextFly(){
-
+    fly.style.visibility = "hidden";
+    fly.style.transition = "none";
     const letter = getRandomLetter();
     window.appState.currentLetter = letter;
-
     if (window.startSendingFrames) {
         window.startSendingFrames();
     }
-
-    await setFlyLetter(letter);   // ⬅ чекаємо поки картинка завантажиться
-
+    await setFlyLetter(letter);
     const areaWidth = gameArea.clientWidth;
     const flyWidth = fly.clientWidth;
-
     flyX = Math.random() * (areaWidth - flyWidth);
-
     fly.style.left = flyX + "px";
     flyY = 0;
     fly.style.top = flyY + "px";
+    fly.style.transform = "scale(1)";
+    requestAnimationFrame(() => {
+        fly.style.transition = "left 0.4s linear, top 0.4s linear, transform 0.4s linear";
+        fly.style.visibility = "visible";
+        flyInterval = setInterval(moveFly, 80);
+    });
 }
+
+function updateLives(){
+    foods.forEach((food, index) => {
+        if(index < loseCounter){
+            food.src = "static/images/food/lose.png";
+            food.classList.remove("full");
+            food.classList.add("lose");
+        }
+        else{
+            food.src = "static/images/food/win.png";
+            food.classList.remove("lose");
+            food.classList.add("full");
+        }
+    });
+}
+
+cameraBtn.addEventListener("click", () => {
+        cameraBtn.remove();
+        nextFly();
+        fly.style.visibility = "visible";
+        title.style.visibility = "visible";
+        fliesEatenText.style.visibility = "visible";
+        frog.src = `static/images/frog/5.png`;
+        counter = 0;
+        loseCounter = 0;
+        updateLives();
+
+        cameraZone.insertAdjacentHTML("beforeend", `
+            <video id="video" class="camera-rectangle" autoplay playsinline></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+        `);
+
+        const script = document.createElement("script");
+        script.src = "static/hand-tracking-script-game.js";
+        script.defer = true;
+        document.body.appendChild(script);
+});
 
 }
