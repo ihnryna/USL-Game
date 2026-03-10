@@ -162,8 +162,8 @@ function setFlyLetter(l) {
 
 function getRandomLetter() {
         const index = Math.floor(Math.random() * SUPPORTED_LETTERS.length);
-        //return SUPPORTED_LETTERS[index];
-        return "Б";
+        return SUPPORTED_LETTERS[index];
+        //return "Б";
 }
 
 function animateFlyToFrog(callback){

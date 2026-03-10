@@ -17,10 +17,11 @@ let results = [];
 
 checkBtn.addEventListener("click", async () => {
     if(checkBtn.textContent=="Перевірити"){
-    canvas.width = video.videoWidth;
+        canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
         ctx.drawImage(video, 0, 0); // draw current frame from video on invisible buffer element (canvas)
+        video.pause();
 
         const imageData = canvas.toDataURL("image/jpeg");
 
@@ -42,6 +43,7 @@ checkBtn.addEventListener("click", async () => {
         showResult(results);
     }
     else {
+        video.play();
         resultText.style.visibility = "hidden";
         cameraFrame.classList.add("state-neutral");
         checkBtn.style.visibility = "visible";

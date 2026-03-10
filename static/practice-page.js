@@ -33,6 +33,8 @@ cameraBtn.addEventListener("click", () => {
 });
 
 nextLetterButton.addEventListener("click", () => {
+    const video = document.getElementById("video");
+    if(video) video.play();
     nextLetter();
     resultText.style.visibility = "hidden";
     cameraFrame.classList.add("state-neutral");
