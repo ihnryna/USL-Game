@@ -414,7 +414,7 @@ nav a:hover {
     position: relative;
     width: 35vw;
     height: 527px;
-    border: 3px solid black;
+    border: 3px solid var(--blue-sign);
     margin: auto;
     overflow: hidden;
     justify-self: end;
@@ -475,8 +475,8 @@ nav a:hover {
 
 .modal-content{
     background:var(--orange-game);
-    width:48vh;
-    height:48vh;
+    width:49vh;
+    height:49vh;
     padding:40px;
     border-radius:20px;
     text-align:center;
@@ -517,6 +517,10 @@ nav a:hover {
     font-size:2vh;
 }
 
+#modalTextPlus{
+    visibility: hidden;
+}
+
 
 @media (max-height: 960px) {
     #userGestureCardG{
@@ -538,8 +542,8 @@ nav a:hover {
         height: 20vh;
     }
     .modal-content{
-        width:52vh;
-        height:52vh;
+        width:54vh;
+        height:54vh;
     }
 }
 

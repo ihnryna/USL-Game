@@ -14,7 +14,7 @@ const SUPPORTED_LETTERS = [
         "А", "Б", "В", "Г", "Е", "Ж",
         "И", "І", "Л", "М", "Н", "О",
         "П", "Р", "С", "Т", "У", "Ф",
-        "Х", "Ч", "Ш", "Ю", "Я"
+        "Ч", "Ш", "Ю", "Я"
 ];
 
 const supportBtn = document.getElementById("supportButton");

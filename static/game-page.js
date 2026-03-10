@@ -9,6 +9,7 @@ const fliesEatenText = document.querySelector(".flies-eaten-text");
 const cameraZone = document.getElementById("cameraZoneG");
 const modal = document.getElementById("gameModal");
 const modalText = document.getElementById("modalText");
+const modalTextPlus = document.getElementById("modalTextPlus");
 const modalButton = document.getElementById("modalButton");
 const foods = document.querySelectorAll(".lives-bar .food");
 const modalFrog = document.getElementById("modalFrog");
@@ -18,7 +19,7 @@ const SUPPORTED_LETTERS = [
         "А", "Б", "В", "Г", "Е", "Ж",
         "И", "І", "Л", "М", "Н", "О",
         "П", "Р", "С", "Т", "У", "Ф",
-        "Х", "Ч", "Ш", "Ю", "Я"
+        "Ч", "Ш", "Ю", "Я"
 ];
 
 
@@ -31,7 +32,7 @@ let flyX = 0;
 let flyY = 0;
 
 let deltaX = 0;
-let deltaY = 5;
+let deltaY = 3;
 
 const areaWidth = gameArea.clientWidth;
 const areaHeight = gameArea.clientHeight;
@@ -49,6 +50,8 @@ function successAnimation(){
 
     modal.style.display = "flex";
     modalText.textContent = "Ням, ням, ням!";
+    modalTextPlus.style.visibility = "hidden";
+
     const frames = [
         "static/images/frog/4.png",
         "static/images/frog/1.png",
@@ -81,20 +84,50 @@ function failAnimation(){
         }
     });
 
-    modalFrog.src = "static/images/frog/sad.png";
-    modalText.textContent = "О ні...";
-    modal.style.display = "flex";
     if(loseCounter>=5){
+        modalText.textContent = `Гру закінчено!`;
+        switch(counter){
+            case 0:
+                modalTextPlus.textContent = `Ваш результат: ${counter} мух-літер зʼїдено`;
+                break;
+            case 1:
+                modalTextPlus.textContent = `Ваш результат: ${counter} муха-літера зʼїдена`;
+                break;
+            case 2:
+                modalTextPlus.textContent = `Ваш результат: ${counter} мухи-літери зʼїдено`;
+                break;
+            case 3:
+                modalTextPlus.textContent = `Ваш результат: ${counter} мухи-літери зʼїдено`;
+                break;
+            case 4:
+                modalTextPlus.textContent = `Ваш результат: ${counter} мухи-літери зʼїдено`;
+                break;
+            default:
+                modalTextPlus.textContent = `Ваш результат: ${counter} мух-літер зʼїдено`;
+                break;
+
+        }
+
+        modalTextPlus.style.visibility = "visible";
+        modalFrog.src = "static/images/frog/1.png";
         modalButton.style.visibility = "visible";
     } else{
+        modalTextPlus.style.visibility = "hidden";
+        modalText.textContent = "О ні...";
+        modalFrog.src = "static/images/frog/sad.png";
         modalButton.style.visibility = "hidden";
     }
+
+    modal.style.display = "flex";
+
     setTimeout(()=>{
         if(loseCounter<5){
-            modal.style.display = "none";
             modalFrog.src = "static/images/frog/4.png";
             frog.src = "static/images/frog/5.png";
             fly.style.visibility = "hidden";
+            modal.style.display = "none";
+            modalTextPlus.style.visibility = "hidden";
+            modalText.textContent = "О ні...";
             nextFly();
         }
     },1200);
@@ -192,14 +225,16 @@ async function nextFly(){
     const areaWidth = gameArea.clientWidth;
     const flyWidth = fly.clientWidth;
     flyX = Math.random() * (areaWidth - flyWidth);
-    fly.style.left = flyX + "px";
     flyY = 0;
-    fly.style.top = flyY + "px";
-    fly.style.transform = "scale(1)";
     requestAnimationFrame(() => {
-        fly.style.transition = "left 0.4s linear, top 0.4s linear, transform 0.4s linear";
-        fly.style.visibility = "visible";
-        flyInterval = setInterval(moveFly, 80);
+        fly.style.left = flyX + "px";
+        fly.style.top = flyY + "px";
+        fly.style.transform = "scale(1)";
+        requestAnimationFrame(() => {
+            fly.style.transition = "left 0.4s linear, top 0.4s linear, transform 0.4s linear";
+            fly.style.visibility = "visible";
+            flyInterval = setInterval(moveFly, 80);
+        });
     });
 }
 
