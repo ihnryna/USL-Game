@@ -32,7 +32,7 @@ let flyX = 0;
 let flyY = 0;
 
 let deltaX = 0;
-let deltaY = 3;
+let deltaY = 4;
 
 const areaWidth = gameArea.clientWidth;
 const areaHeight = gameArea.clientHeight;
