@@ -7,12 +7,47 @@ window.appState = {
 const cameraBtn = document.getElementById("cameraButton");
 const nextLetterButton = document.getElementById("nextLetterButton");
 const cameraZone = document.getElementById("cameraZone");
+const cameraFrame = document.getElementById("userGestureCard");
+
 const SUPPORTED_LETTERS = [
         "А", "Б", "В", "Г", "Е", "Ж",
         "И", "І", "Л", "М", "Н", "О",
         "П", "Р", "С", "Т", "У", "Ф",
         "Х", "Ч", "Ш", "Ю", "Я"
 ];
+
+const supportBtn = document.getElementById("supportButton");
+supportBtn.style.visibility = "visible";
+const supportModal = document.getElementById("supportModal");
+const screenshotContainer = document.getElementById("screenshotContainer");
+const closeSupportBtn = document.getElementById("closeSupportBtn");
+const sendSupportBtn = document.getElementById("sendSupportBtn");
+const supportDescription = document.getElementById("supportDescription");
+
+supportBtn.addEventListener("click", async () => {
+    clearInterval(intervalId);
+    const canvas = await html2canvas(document.body);
+    const dataURL = canvas.toDataURL("image/png");
+    screenshotContainer.innerHTML = `<img src="${dataURL}" alt="Скріншот"/>`;
+    supportDescription.value = "";
+    supportModal.style.display = "flex";
+});
+
+closeSupportBtn.addEventListener("click", () => {
+    supportModal.style.display = "none";
+    if (window.startSendingFrames) {
+        window.startSendingFrames();
+    }
+});
+
+sendSupportBtn.addEventListener("click", () => {
+    supportModal.style.display = "none";
+    const video = document.getElementById("video");
+    nextLetter();
+    resultText.style.visibility = "hidden";
+    cameraFrame.classList.add("state-neutral");
+    nextLetterButton.disabled=true;
+});
 
 
 cameraBtn.addEventListener("click", () => {

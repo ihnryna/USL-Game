@@ -17,6 +17,39 @@ const SUPPORTED_LETTERS = [
         "Х", "Ч", "Ш", "Ю", "Я"
 ];
 
+const supportBtn = document.getElementById("supportButton");
+supportBtn.style.visibility = "visible";
+const supportModal = document.getElementById("supportModal");
+const screenshotContainer = document.getElementById("screenshotContainer");
+const closeSupportBtn = document.getElementById("closeSupportBtn");
+const sendSupportBtn = document.getElementById("sendSupportBtn");
+const supportDescription = document.getElementById("supportDescription");
+
+supportBtn.addEventListener("click", async () => {
+    const canvas = await html2canvas(document.body);
+    const dataURL = canvas.toDataURL("image/png");
+    screenshotContainer.innerHTML = `<img src="${dataURL}" alt="Скріншот"/>`;
+    supportDescription.value = "";
+    supportModal.style.display = "flex";
+});
+
+closeSupportBtn.addEventListener("click", () => {
+    supportModal.style.display = "none";
+});
+
+sendSupportBtn.addEventListener("click", () => {
+    supportModal.style.display = "none";
+    const video = document.getElementById("video");
+    if(video) video.play();
+    nextLetter();
+    resultText.style.visibility = "hidden";
+    cameraFrame.classList.add("state-neutral");
+    checkBtn.style.visibility = "visible";
+    checkBtn.textContent = "Перевірити";
+    window.results = [];
+    nextLetterButton.disabled=true;
+});
+
 cameraBtn.addEventListener("click", () => {
         cameraBtn.remove();
         checkBtn.style.visibility = "visible";

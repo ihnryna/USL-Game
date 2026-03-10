@@ -13,7 +13,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
         video.srcObject = stream;
     });
 
-let results = [];
+window.results = [];
 
 checkBtn.addEventListener("click", async () => {
     if(checkBtn.textContent=="Перевірити"){
@@ -34,13 +34,13 @@ checkBtn.addEventListener("click", async () => {
         const data = await res.json();
 
         if(data.has_hand){
-            results.push(data.pred);
+            window.results.push(data.pred);
         } else {
-            results.push(0);
+            window.results.push(0);
         }
 
-        console.log("Results:", results);
-        showResult(results);
+        console.log("Results:", window.results);
+        showResult(window.results);
     }
     else {
         video.play();
@@ -67,7 +67,7 @@ function showResult(result) {
             checkBtn.style.visibility = "hidden";
             checkBtn.textContent = "Перевірити";
             nextLetterButton.disabled=false;
-            results = [];
+            window.results = [];
         } else {
             console.log(2);
             resultText.textContent = "Це не зовсім так, спробуйте ще раз";
@@ -88,7 +88,7 @@ function showResult(result) {
             checkBtn.style.visibility = "hidden";
             checkBtn.textContent = "Перевірити";
             nextLetterButton.disabled=false;
-            results = [];
+            window.results = [];
         } else {
         console.log(4);
             resultText.textContent = "Ви використали 2/2 спроб, перегляньте і відтворіть правильний жест";
@@ -119,7 +119,7 @@ function showResult(result) {
             checkBtn.style.visibility = "hidden";
             checkBtn.textContent = "Перевірити";
             nextLetterButton.disabled=false;
-            results = [];
+            window.results = [];
         } else {
         console.log(6);
             resultText.textContent = "Перегляньте і відтворіть правильний жест";

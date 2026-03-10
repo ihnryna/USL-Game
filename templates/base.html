@@ -20,6 +20,25 @@
 
 <main>
     {% block content %}{% endblock %}
+
+<button id="supportButton" class="btn support-btn"> !?
+  <span class="tooltip-text">Натисніть, щоб зробити скріншот та повідомити про проблему</span>
+</button>
+
+<div id="supportModal" class="modal">
+    <div class="modal-content">
+        <h2>Повідомте про проблему</h2>
+        <div id="screenshotContainer"></div>
+        <textarea id="supportDescription" placeholder="Опишіть проблему..." rows="4" style="width: 100%;"></textarea>
+        <div style="margin-top: 10px;">
+            <button id="sendSupportBtn" class="btn">Готово</button>
+            <button id="closeSupportBtn" class="btn">Скасувати</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </main>
 </body>
 </html>

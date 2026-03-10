@@ -7,6 +7,8 @@ const cameraFrame = document.getElementById("userGestureCard");
 const resultText = document.getElementById("resultText");
 const checkBtn = document.getElementById("checkButton");
 
+window.intervalId = null;
+
 navigator.mediaDevices.getUserMedia({ video: true })
     .then(stream => {
         video.srcObject = stream;
@@ -16,7 +18,7 @@ navigator.mediaDevices.getUserMedia({ video: true })
 window.startSendingFrames = function() {
     const resultsQueue = [];
 
-    const intervalId = setInterval(async () => {
+    window.intervalId = setInterval(async () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
 
@@ -43,7 +45,7 @@ window.startSendingFrames = function() {
         }
 
         console.log("Queue:", resultsQueue);
-        processLastResults(resultsQueue, intervalId);
+        processLastResults(resultsQueue, window.intervalId);
 
     }, 200);
 }
@@ -58,7 +60,7 @@ function processLastResults(results, intervalId) {
         if (letter==0) noHand++;
     });
     console.log(rightLetters);
-    showResult(rightLetters, noHand, intervalId);
+    showResult(rightLetters, noHand, window.intervalId);
 }
 
 function showResult(rightLetters, noHand, intervalId){
